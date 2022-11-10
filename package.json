@@ -10,14 +10,26 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:remote.playpause"
+    "onCommand:remote.playpause",
+    "onCommand:remote.rewind_back",
+    "onCommand:remote.rewind_forward"
   ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "remote.playpause",
-      "title": "Play/Pause your video"
-    }]
+    "commands": [
+      {
+        "command": "remote.playpause",
+        "title": "Play/Pause your video"
+      },
+      {
+        "command": "remote.rewind_back",
+        "title": "Rewind back 10 seconds"
+      },
+      {
+        "command": "remote.rewind_forward",
+        "title": "Rewind forward 10 seconds"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",

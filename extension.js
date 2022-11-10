@@ -47,6 +47,26 @@ function activate(context) {
 		vscode.window.showInformationMessage('Played/paused your video');
 	});
 
+	let rewind_back = vscode.commands.registerCommand('remote.rewind_back', function () {
+		console.log("Sending rewind back command...");
+		for (let client of clients) {
+			client.send(JSON.stringify({
+				message: "rewind_back"
+			}));
+		}
+		vscode.window.showInformationMessage('Rewind video back');
+	});
+
+	let rewind_forward = vscode.commands.registerCommand('remote.rewind_forward', function () {
+		console.log("Sending rewind forward command...");
+		for (let client of clients) {
+			client.send(JSON.stringify({
+				message: "rewind_forward"
+			}));
+		}
+		vscode.window.showInformationMessage('Rewind video forward');
+	});
+
 	context.subscriptions.push(disposable);
 }
 
