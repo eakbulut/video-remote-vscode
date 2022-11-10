@@ -11,8 +11,10 @@
   ],
   "activationEvents": [
     "onCommand:remote.playpause",
-    "onCommand:remote.rewind_back",
-    "onCommand:remote.rewind_forward"
+    "onCommand:remote.rewind",
+    "onCommand:remote.forward",
+    "onCommand:remote.restart",
+    "onCommand:remote.next"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -22,12 +24,43 @@
         "title": "Play/Pause your video"
       },
       {
-        "command": "remote.rewind_back",
+        "command": "remote.rewind",
         "title": "Rewind back 10 seconds"
       },
       {
-        "command": "remote.rewind_forward",
+        "command": "remote.forward",
         "title": "Rewind forward 10 seconds"
+      },
+      {
+        "command": "remote.restart",
+        "title": "Restart your video"
+      },
+      {
+        "command": "remote.next",
+        "title": "Next video"
+      }
+    
+    ],
+    "keybindings":[
+      {
+        "command": "remote.playpause",
+        "key": "ctrl+p ctrl+p"
+      },
+      {
+        "command": "remote.rewind",
+        "key": "ctrl+[ ctrl+["
+      },
+      {
+        "command": "remote.forward",
+        "key": "ctrl+] ctrl+]"
+      },
+      {
+        "command": "remote.restart",
+        "key": "ctrl+backspace ctrl+backspace"
+      },
+      {
+        "command": "remote.next",
+        "key": "ctrl+enter ctrl+enter"
       }
     ]
   },

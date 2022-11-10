@@ -35,7 +35,7 @@ function activate(context) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('remote.playpause', function () {
+	let playpause = vscode.commands.registerCommand('remote.playpause', function () {
 		// The code you place here will be executed every time your command is executed
 		console.log("Sending command...");
 		for (let client of clients) {
@@ -47,27 +47,51 @@ function activate(context) {
 		vscode.window.showInformationMessage('Played/paused your video');
 	});
 
-	let rewind_back = vscode.commands.registerCommand('remote.rewind_back', function () {
-		console.log("Sending rewind back command...");
+	let rewind = vscode.commands.registerCommand('remote.rewind', function () {
+		console.log("Sending rewind command...");
 		for (let client of clients) {
 			client.send(JSON.stringify({
-				message: "rewind_back"
+				message: "rewind"
 			}));
 		}
-		vscode.window.showInformationMessage('Rewind video back');
+		vscode.window.showInformationMessage('Rewind video 10 seconds');
 	});
 
-	let rewind_forward = vscode.commands.registerCommand('remote.rewind_forward', function () {
-		console.log("Sending rewind forward command...");
+	let forward = vscode.commands.registerCommand('remote.forward', function () {
+		console.log("Sending forward command...");
 		for (let client of clients) {
 			client.send(JSON.stringify({
-				message: "rewind_forward"
+				message: "forward"
 			}));
 		}
-		vscode.window.showInformationMessage('Rewind video forward');
+		vscode.window.showInformationMessage('Forward video 10 seconds');
 	});
 
-	context.subscriptions.push(disposable);
+	let restart = vscode.commands.registerCommand('remote.restart', function () {
+		console.log("Sending restart command...");
+		for (let client of clients) {
+			client.send(JSON.stringify({
+				message: "restart"
+			}));
+		}
+		vscode.window.showInformationMessage('Restarting video');
+	});
+
+	let next = vscode.commands.registerCommand('remote.next', function () {
+		console.log("Sending next command...");
+		for (let client of clients) {
+			client.send(JSON.stringify({
+				message: "next"
+			}));
+		}
+		vscode.window.showInformationMessage('Loading next video');
+	});
+
+	context.subscriptions.push(playpause);
+	context.subscriptions.push(rewind);
+	context.subscriptions.push(forward);
+	context.subscriptions.push(restart);
+	context.subscriptions.push(next);
 }
 
 // This method is called when your extension is deactivated
